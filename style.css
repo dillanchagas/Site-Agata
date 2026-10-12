@@ -1,6 +1,44 @@
 @charset "UTF-8";
 
+/* ========================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+======================================== */
+
+:root {
+    --cor-fundo: rgb(245, 245, 220);
+    --cor-cabecalho: #795e0f;
+    --cor-texto: #0a0a0a;
+    --cor-texto-claro: #fefcfc;
+    --cor-dourado: #dfa125;
+    --cor-dourado-hover: rgba(255, 255, 0, 0.493);
+    --cor-destaque: #e2c28272;
+    --cor-botao: #f6ebe1;
+
+    --fonte-principal: Arial, sans-serif;
+    --fonte-titulos: 'Cormorant Garamond', serif;
+
+    --largura-conteudo: 1200px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+
+/* ========================================
+   2. RESET E CONFIGURAÇÕES BASE
+======================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
+    min-width: 320px;
     margin: 0;
     padding: 0;
 
@@ -8,19 +46,44 @@ body {
     font-size: 1rem;
     line-height: 1.5;
 
-    background-color: rgb(245, 245, 220);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
 }
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: break-word;
+}
+
+
+/* ========================================
+   3. CABEÇALHO
+======================================== */
 
 .cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+
     gap: 20px;
 
+    width: 100%;
     padding: 15px clamp(20px, 5vw, 60px);
 
-    background-color: #795e0f;
+    background-color: var(--cor-cabecalho);
 }
 
 .marca {
@@ -31,14 +94,20 @@ body {
 img.logo {
     width: 100px;
     max-height: 100px;
+
     object-fit: contain;
+
     margin: 0;
 }
 
 
+/* ========================================
+   4. MENU DE NAVEGAÇÃO
+======================================== */
 
 nav.menu {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 nav.menu ul {
@@ -46,43 +115,59 @@ nav.menu ul {
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
+
     gap: 8px;
 
     margin: 0;
     padding: 0;
 
-    background-color: transparent;
     list-style: none;
+}
+
+nav.menu ul li {
+    margin: 0;
+    padding: 0;
 }
 
 nav.menu ul li a {
     display: inline-block;
-    padding: 10px 15px;
+
+    padding: 10px 12px;
 
     font-size: 1rem;
     font-weight: 600;
+    text-align: center;
     text-decoration: none;
 
-    color:rgb(254, 252, 252);
+    color: var(--cor-texto-claro);
 
+    border-radius: 8px;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 nav.menu ul li a:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgba(255, 255, 0, 0.493);
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(13, 13, 13, 0.673);
-    transition: all 0.2s;
+    color: var(--cor-texto);
+    background-color: var(--cor-dourado-hover);
+
+    box-shadow: 0 0 5px rgba(13, 13, 13, 0.35);
 }
 
 
+/* ========================================
+   5. APRESENTAÇÃO PRINCIPAL
+======================================== */
 
 .content {
     width: 100%;
     max-width: none;
 
     margin: 0;
-    padding: clamp(60px, 10vw, 130px) clamp(20px, 8vw, 120px);
+    padding: clamp(60px, 10vw, 130px)
+             clamp(20px, 8vw, 120px);
 
     background-color: var(--cor-destaque);
 }
@@ -90,46 +175,68 @@ nav.menu ul li a:hover {
 .apresentacao {
     width: 100%;
     max-width: 750px;
+
     margin: 0 auto;
 }
+
+
+/* ========================================
+   6. TÍTULO PRINCIPAL
+======================================== */
 
 h1.comeco {
     margin: 0 0 5px;
 
-    font-size: clamp(3rem, 7vw, 5.5rem);
-    line-height: 1;
+    font-family: var(--fonte-titulos);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
 
     color: rgba(255, 255, 0, 0.805);
-    text-shadow: 0 0 10px rgba(13, 13, 13, 0.673);
+
+    text-shadow: 0 0 10px rgba(13, 13, 13, 0.35);
 }
+
+
+/* ========================================
+   7. SUBTÍTULO
+======================================== */
 
 p.segunda {
     margin: 0 0 25px;
 
     font-family: var(--fonte-titulos);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2rem, 6vw, 4.5rem);
     font-weight: 600;
     line-height: 1.1;
 
     color: var(--cor-dourado);
 }
 
+
+/* ========================================
+   8. DESCRIÇÃO
+======================================== */
+
 p.descricao {
     max-width: 600px;
-    margin-bottom: 30px;
+
+    margin: 0 0 30px;
 
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.8;
 }
 
 
-/* =========================
-   BOTÕES DA APRESENTAÇÃO
-========================= */
+/* ========================================
+   9. BOTÕES DA APRESENTAÇÃO
+======================================== */
 
 .botoes {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+
     gap: 12px;
 }
 
@@ -139,40 +246,51 @@ p.descricao {
     align-items: center;
 
     min-height: 48px;
+    max-width: 100%;
+
     padding: 12px 24px;
 
     border: 1px solid rgba(4, 4, 4, 0.493);
     border-radius: 5px;
 
-    font: inherit;
+    font-family: inherit;
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
 
-    
+    overflow-wrap: anywhere;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .botoes .btn {
     background-color: transparent;
-    color: black;
+    color: var(--cor-texto);
 }
 
 .botoes .btn2 {
     background-color: transparent;
-    color:black;
+    color: var(--cor-texto);
 }
 
 .botoes .btn:hover,
 .botoes .btn2:hover {
-    background-color: rgba(255, 255, 0, 0.493);
+    background-color: var(--cor-dourado-hover);
+
     transform: translateY(-2px);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.364);
+
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }
 
 
-/* =========================
-   SECÇÕES
-========================= */
+/* ========================================
+   10. SECÇÕES DO SITE
+======================================== */
 
 .produtos,
 .personalizar,
@@ -180,11 +298,17 @@ p.descricao {
 .como-funciona,
 .contacto {
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--largura-conteudo);
 
-    margin: 0 auto;
+    margin-inline: auto;
+
     padding: 70px clamp(20px, 5vw, 60px);
 }
+
+
+/* ========================================
+   11. TÍTULOS DAS SECÇÕES
+======================================== */
 
 .titulo-seccao {
     margin-bottom: 35px;
@@ -199,47 +323,85 @@ p.descricao {
 
     font-family: var(--fonte-titulos);
     font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
     line-height: 1.2;
 }
+
+
+/* ========================================
+   12. SUBTÍTULO DAS CATEGORIAS
+======================================== */
 
 p.cat2 {
     margin: 0;
 
-    color: var(--cor-dourado);
     font-family: var(--fonte-titulos);
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+
+    color: var(--cor-texto);
 }
 
 
-/* =========================
-   RODAPÉ
-========================= */
+/* ========================================
+   13. RODAPÉ
+======================================== */
 
 footer {
+    width: 100%;
+
     padding: 25px 20px;
-    background-color:black;
+
+    background-color: var(--cor-texto);
+
     text-align: center;
 }
 
 footer p {
     margin: 0;
+
     color: #fff;
     font-size: 0.9rem;
 }
 
 
-/* =========================
-   TABLETS
-========================= */
+/* ========================================
+   14. ACESSIBILIDADE DO TECLADO
+======================================== */
+
+nav.menu a:focus-visible,
+.botoes a:focus-visible {
+    outline: 3px solid var(--cor-dourado);
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   15. TABLETS
+======================================== */
 
 @media (max-width: 768px) {
 
     .cabecalho {
         justify-content: center;
+        gap: 15px;
     }
 
-    div.menu ul {
+    nav.menu {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    nav.menu ul {
         justify-content: center;
+    }
+
+    nav.menu ul li a {
+        padding: 9px 10px;
+        font-size: 0.95rem;
+    }
+
+    .content {
+        padding: 60px 30px;
     }
 
     .produtos,
@@ -253,14 +415,15 @@ footer p {
 }
 
 
-/* =========================
-   TELEMÓVEIS
-========================= */
+/* ========================================
+   16. TELEMÓVEIS
+======================================== */
 
 @media (max-width: 480px) {
 
     .cabecalho {
-        gap: 10px;
+        gap: 12px;
+
         padding: 15px;
     }
 
@@ -269,25 +432,129 @@ footer p {
         max-height: 80px;
     }
 
-    div.menu ul {
+    nav.menu {
+        width: 100%;
+        min-width: 0;
+    }
+
+    nav.menu ul {
+        justify-content: center;
         gap: 4px;
     }
 
-    div.menu ul li a {
+    nav.menu ul li {
+        max-width: 100%;
+    }
+
+    nav.menu ul li a {
         padding: 8px;
+
         font-size: 0.85rem;
     }
 
-    div.content {
-        padding: 60px 20px;
+    .content {
+        padding: 50px 20px;
+    }
+
+    h1.comeco {
+        font-size: clamp(2.4rem, 10vw, 3.2rem);
+    }
+
+    p.segunda {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+
+    p.descricao {
+        font-size: 1rem;
+        line-height: 1.7;
     }
 
     .botoes {
         flex-direction: column;
         align-items: stretch;
+
+        width: 100%;
     }
 
     .botoes a {
         width: 100%;
+        min-height: 48px;
+
+        padding: 12px 16px;
+    }
+
+    .produtos,
+    .personalizar,
+    .sobre,
+    .como-funciona,
+    .contacto {
+        padding: 40px 20px;
+    }
+
+    .titulo-seccao h2,
+    .personalizar h2,
+    .sobre h2,
+    .como-funciona h2,
+    .contacto h2 {
+        font-size: 2rem;
+    }
+
+    footer {
+        padding: 20px 15px;
+    }
+}
+
+
+/* ========================================
+   17. TELEMÓVEIS PEQUENOS
+======================================== */
+
+@media (max-width: 360px) {
+
+    .cabecalho {
+        padding: 12px;
+    }
+
+    nav.menu ul {
+        gap: 3px;
+    }
+
+    nav.menu ul li a {
+        padding: 7px 6px;
+        font-size: 0.8rem;
+    }
+
+    .content {
+        padding: 40px 16px;
+    }
+
+    .produtos,
+    .personalizar,
+    .sobre,
+    .como-funciona,
+    .contacto {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+
+/* ========================================
+   18. PREFERÊNCIAS DE MOVIMENTO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }
