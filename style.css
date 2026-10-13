@@ -73,6 +73,7 @@ p {
 ======================================== */
 
 .cabecalho {
+    position:fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,6 +85,7 @@ p {
     padding: 15px clamp(20px, 5vw, 60px);
 
     background-color: var(--cor-cabecalho);
+    box-shadow: 0 0 10px rgba(13, 13, 13, 0.35);
 }
 
 .marca {
@@ -169,7 +171,7 @@ nav.menu ul li a:hover {
     padding: clamp(60px, 10vw, 130px)
              clamp(20px, 8vw, 120px);
 
-    background-color: var(--cor-destaque);
+    background-color:#ac7f2651;
 }
 
 .apresentacao {
